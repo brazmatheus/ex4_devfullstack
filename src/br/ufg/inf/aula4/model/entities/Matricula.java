@@ -5,6 +5,10 @@ public class Matricula {
 	private Integer idMatricula;
 	private Aluno aluno;
 	private Oferta oferta;
+	
+	public Matricula() {
+		super();
+	}
 
 	public Matricula(Integer idMatricula, Aluno aluno, Oferta oferta) {
 		super();
