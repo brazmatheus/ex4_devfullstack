@@ -23,7 +23,7 @@ public class AlunoDAO {
 		try {
 			Connection conn = DB.getConnection();
 			st = (PreparedStatement) conn.prepareStatement(
-					"INSERT INTO tb_disciplina " + "(dt_inicio, ativo, id_pessoa, id_curso)" + "VALUES (?, ?, ?, ?)",
+					"INSERT INTO tb_aluno " + "(dt_inicio, ativo, id_pessoa, id_curso)" + "VALUES (?, ?, ?, ?)",
 					Statement.RETURN_GENERATED_KEYS);
 			st.setDate(1, new Date(aluno.getDtInicio().getTime()));
 			st.setInt(2, aluno.getAtivo() == true ? 1 : 0);
@@ -54,7 +54,7 @@ public class AlunoDAO {
 		List<Aluno> alunos = new ArrayList<Aluno>();
 		try {
 			Connection conn = DB.getConnection();
-			st = conn.prepareStatement("SELECT id_aluno, dt_inicio, ativo, id_pessoa, id_curso" + " FROM tb_disciplina "
+			st = conn.prepareStatement("SELECT id_aluno, dt_inicio, ativo, id_pessoa, id_curso" + " FROM tb_aluno "
 					+ " ORDER BY id_aluno ");
 
 			rs = st.executeQuery();

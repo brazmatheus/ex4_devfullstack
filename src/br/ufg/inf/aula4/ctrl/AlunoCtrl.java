@@ -26,7 +26,7 @@ public class AlunoCtrl {
 		try {
 			alunos = negocio.buscaTodos();
 		} catch (AlunoException e) {
-			System.out.println("Erro tentar buscar as disciplinas cadastradas.");
+			System.out.println("Erro tentar buscar os alunos cadastrados.");
 			System.out.println(e.getMessage());
 		}
 		return alunos;
@@ -47,7 +47,7 @@ public class AlunoCtrl {
 		Aluno alunoAlterado = null;
 		try {
 			alunoAlterado = negocio.alterar(aluno, ativo);
-			System.out.println("Aluno alterada com sucesso: " + alunoAlterado);
+			System.out.println("Aluno alterado com sucesso: " + alunoAlterado);
 		} catch (AlunoException e) {
 			System.out.println("Erro ao tentar alterar aluno com ID: " + aluno.getIdAluno() + ".");
 			System.out.println(e.getMessage());
@@ -58,7 +58,7 @@ public class AlunoCtrl {
 	public void excluir(Integer id) {
 		try {
 			negocio.excluir(id);
-			System.out.println("Aluno excluída com sucesso.");
+			System.out.println("Aluno excluï¿½do com sucesso.");
 		} catch (AlunoException e) {
 			System.out.println("Erro ao tentar excluir a aluno");
 			System.out.println(e.getMessage());
