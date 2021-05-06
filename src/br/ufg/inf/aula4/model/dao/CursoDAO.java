@@ -52,14 +52,14 @@ public class CursoDAO {
 		try {
 			Connection conn = DB.getConnection();
 			st = conn.prepareStatement("SELECT id_curso, nm_curso" + " FROM tb_curso "
-					+ " ORDER BY id_aluno ");
+					+ " ORDER BY id_curso ");
 
 			rs = st.executeQuery();
 
 			while (rs.next()) {
 				Curso curso = new Curso();
 
-				curso.setIdCurso(rs.getInt("id_aluno"));
+				curso.setIdCurso(rs.getInt("id_curso"));
 				curso.setNmCurso(rs.getString("nm_curso"));
 
 				alunos.add(curso);
@@ -80,7 +80,7 @@ public class CursoDAO {
 		PreparedStatement st = null;
 		try {
 			Connection conn = DB.getConnection();
-			st = conn.prepareStatement("SELECT id_curso, nm_curso" + " FROM tb_aluno "
+			st = conn.prepareStatement("SELECT id_curso, nm_curso" + " FROM tb_curso "
 					+ " WHERE id_curso = ? ");
 			st.setInt(1, id);
 			rs = st.executeQuery();

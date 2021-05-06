@@ -5,11 +5,17 @@ import java.text.ParseException;
 import java.text.SimpleDateFormat;
 import java.util.Date;
 
+import br.ufg.inf.aula4.ctrl.AlunoCtrl;
+import br.ufg.inf.aula4.ctrl.CursoCtrl;
 import br.ufg.inf.aula4.ctrl.DisciplinaCtrl;
+import br.ufg.inf.aula4.ctrl.MatriculaCtrl;
 import br.ufg.inf.aula4.ctrl.OfertaCtrl;
 import br.ufg.inf.aula4.ctrl.PessoaCtrl;
 import br.ufg.inf.aula4.ctrl.ProfessorCtrl;
+import br.ufg.inf.aula4.model.entities.Aluno;
+import br.ufg.inf.aula4.model.entities.Curso;
 import br.ufg.inf.aula4.model.entities.Disciplina;
+import br.ufg.inf.aula4.model.entities.Matricula;
 import br.ufg.inf.aula4.model.entities.Oferta;
 import br.ufg.inf.aula4.model.entities.Pessoa;
 import br.ufg.inf.aula4.model.entities.Professor;
@@ -29,10 +35,10 @@ public class TesteApp {
 		/* Inserir Disciplinas */
 		Disciplina disc1 = new Disciplina(null, "Des. FullStack", 64);
 		Disciplina disc2 = new Disciplina(null, "LLP", 60);
-		Disciplina disc3 = new Disciplina(null, "Matemática", 30);
-		Disciplina disc4 = new Disciplina(1, "Inglês", 10);
-		Disciplina disc5 = new Disciplina(2, "Lógica", 40);
-		Disciplina disc6 = new Disciplina(3, "Matemática", 30);
+		Disciplina disc3 = new Disciplina(null, "Matemï¿½tica", 30);
+		Disciplina disc4 = new Disciplina(1, "Inglï¿½s", 10);
+		Disciplina disc5 = new Disciplina(2, "Lï¿½gica", 40);
+		Disciplina disc6 = new Disciplina(3, "Matemï¿½tica", 30);
 		ctrl.inserir(disc1);
 		ctrl.inserir(disc2);
 		ctrl.inserir(disc3);
@@ -58,7 +64,7 @@ public class TesteApp {
 		ctrl.alterar(disc3);
 
 		System.out.println("--------------------------------------------------");
-		/* Excluíndo disciplina */
+		/* Excluï¿½ndo disciplina */
 		ctrl.excluir(disc1.getIdDisciplina());
 		System.out.println("Disciplinas Cadastradas");
 		for (Disciplina dis : ctrl.buscaTodos()) {
@@ -101,11 +107,11 @@ public class TesteApp {
 		/* Alterado a pessoa */
 		pes4.setCpf(11111111111l);
 		;
-		pes4.setNmPessoa("José " + pes4.getNmPessoa());
+		pes4.setNmPessoa("Josï¿½ " + pes4.getNmPessoa());
 		ctrl.alterar(pes4);
 
 		System.out.println("--------------------------------------------------");
-		/* Excluíndo pessoa */
+		/* Excluï¿½ndo pessoa */
 		ctrl.excluir(pes3.getIdPessoa());
 		System.out.println("Pessoas Cadastradas");
 		for (Pessoa dis : ctrl.buscaTodos()) {
@@ -114,6 +120,80 @@ public class TesteApp {
 
 		System.out.println("--------------------------------------------------");
 		System.out.println(ctrl.buscaPorId(1));
+	}
+	
+	public void testeCrudCurso(CursoCtrl ctrl) {
+		Curso curso1 = new Curso(1, "Algebra Linear");
+		Curso curso2 = new Curso(2, "Estrutura de Dados");
+		
+		ctrl.inserir(curso1);
+		ctrl.inserir(curso2);
+		
+		/* Buscar todos os Cursos */
+		System.out.println("Cursos Cadastrados");
+		for (Curso c: ctrl.buscaTodos()) {
+			System.out.println(c);
+		}
+
+		System.out.println("--------------------------------------------------");
+		/* Buscar curso com o ID 1 */
+		System.out.println("Buscar pelo id 1: " + ctrl.buscaPorId(1));
+
+		System.out.println("--------------------------------------------------");
+		/* Alterando o curso */
+
+		curso2.setNmCurso("Banco de Dados");
+		ctrl.alterar(curso2);
+		
+		/* Excluindo o curso */
+		
+		ctrl.excluir(1);
+		
+		/* Buscar todos os Cursos */
+		System.out.println("Cursos Cadastrados apï¿½s exclusï¿½o");
+		for (Curso c: ctrl.buscaTodos()) {
+			System.out.println(c);
+		}
+		
+	}
+	
+	public void testeCrudAluno(AlunoCtrl ctrl, PessoaCtrl pessoaCtrl, CursoCtrl cursoCtrl) {
+		for (Aluno aluno : ctrl.buscaTodos()) {
+			System.out.println(aluno);
+		}
+		
+		Aluno aluno1 = new Aluno(1, new Date(2021, 10, 12), true, pessoaCtrl.buscaPorId(3), cursoCtrl.buscaPorId(2));
+		Aluno aluno2 = new Aluno(2, new Date(2021, 3, 23), true, pessoaCtrl.buscaPorId(4), cursoCtrl.buscaPorId(2));
+		
+		System.out.println("--------------------------------------------------");
+		
+		ctrl.inserir(aluno1);
+		ctrl.inserir(aluno2);
+		
+		/* Buscar todos os Alunos */
+		System.out.println("Alunos Cadastrados");
+		for (Aluno c: ctrl.buscaTodos()) {
+			System.out.println(c);
+		}
+
+		System.out.println("--------------------------------------------------");
+		/* Buscar aluno com o ID 1 */
+		System.out.println("Buscar pelo id 1: " + ctrl.buscaPorId(1));
+
+		System.out.println("--------------------------------------------------");
+		/* Alterando o aluno */
+
+		ctrl.alterar(aluno2, false);
+		
+		/* Excluindo o aluno */
+		
+		ctrl.excluir(1);
+		
+		/* Buscar todos os Alunos */
+		System.out.println("Alunos Cadastrados apï¿½s exclusï¿½o");
+		for (Aluno c: ctrl.buscaTodos()) {
+			System.out.println(c);
+		}
 	}
 
 	public void testeCrudProfessor(ProfessorCtrl ctrl, PessoaCtrl pessoaCtrl) {
@@ -186,5 +266,39 @@ public class TesteApp {
 
 		System.out.println("--------------------------------------------------");
 
+	}
+	
+	public void testeCrudMatricula(MatriculaCtrl ctrl, AlunoCtrl alunoCtrl, OfertaCtrl ofertaCtrl) {
+		for (Matricula matricula : ctrl.buscaTodos()) {
+			System.out.println(matricula);
+		}
+		
+		Matricula matricula1 = new Matricula(1, alunoCtrl.buscaPorId(2), ofertaCtrl.buscaPorId(2));
+		Matricula matricula2 = new Matricula(2, alunoCtrl.buscaPorId(4), ofertaCtrl.buscaPorId(2));
+		
+		System.out.println("--------------------------------------------------");
+		
+		ctrl.inserir(matricula1);
+		ctrl.inserir(matricula2);
+		
+		/* Buscar todos os Alunos */
+		System.out.println("Alunos Cadastrados");
+		for (Matricula m: ctrl.buscaTodos()) {
+			System.out.println(m);
+		}
+
+		System.out.println("--------------------------------------------------");
+		/* Buscar matricula com o ID 1 */
+		System.out.println("Buscar pelo id 1: " + ctrl.buscaPorId(1));
+		
+		/* Excluindo o matricula */
+		
+		ctrl.excluir(1);
+		
+		/* Buscar todos os Matriculas */
+		System.out.println("Matriculas Cadastrados apï¿½s exclusï¿½o");
+		for (Matricula c: ctrl.buscaTodos()) {
+			System.out.println(c);
+		}
 	}
 }

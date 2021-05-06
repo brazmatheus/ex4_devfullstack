@@ -26,8 +26,9 @@ public class DB {
 			try {
 				Properties props = loadProperties();
 				String url = props.getProperty("dburl");
+		        Class.forName("com.mysql.jdbc.Driver"); /* Aqui registra */
 				conn = (Connection) DriverManager.getConnection(url, props);
-			}catch (SQLException e) {
+			}catch (SQLException | ClassNotFoundException e) {
 				throw new DbException(e.getMessage());
 			}
 		}
