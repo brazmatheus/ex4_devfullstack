@@ -12,6 +12,8 @@ import java.util.List;
 import br.ufg.inf.aula4.app.DB;
 import br.ufg.inf.aula4.ctrl.exception.AlunoException;
 import br.ufg.inf.aula4.model.entities.Aluno;
+import br.ufg.inf.aula4.model.entities.Curso;
+import br.ufg.inf.aula4.model.entities.Pessoa;
 
 
 public class AlunoDAO {
@@ -65,8 +67,8 @@ public class AlunoDAO {
 				aluno.setIdAluno(rs.getInt("id_aluno"));
 				aluno.setDtInicio(rs.getDate("dt_inicio"));
 				aluno.setAtivo(rs.getInt("ativo") == 1 ? true : false);
-				aluno.getPessoa().setIdPessoa(rs.getInt("id_pessoa"));
-				aluno.getCurso().setIdCurso(rs.getInt("id_curso"));
+				aluno.setCurso(new Curso(rs.getInt("id_curso"), null));
+				aluno.setPessoa(new Pessoa( rs.getInt("id_pessoa"), null,null,null ));
 
 				alunos.add(aluno);
 			}
@@ -96,8 +98,8 @@ public class AlunoDAO {
 				aluno.setIdAluno(rs.getInt("id_aluno"));
 				aluno.setDtInicio(rs.getDate("dt_inicio"));
 				aluno.setAtivo(rs.getInt("ativo") == 1 ? true : false);
-				aluno.getPessoa().setIdPessoa(rs.getInt("id_pessoa"));
-				aluno.getCurso().setIdCurso(rs.getInt("id_curso"));
+				aluno.setCurso(new Curso(rs.getInt("id_curso"), null));
+				aluno.setPessoa(new Pessoa( rs.getInt("id_pessoa"), null,null,null ));
 
 			}
 
@@ -144,7 +146,7 @@ public class AlunoDAO {
 		try {
 			Connection conn = DB.getConnection();
 			
-			String query = " DELETE FROM tb_disciplina WHERE id_disciplina = ? ; ";
+			String query = " DELETE FROM tb_aluno WHERE id_aluno = ? ; ";
 			st = (PreparedStatement) conn.prepareStatement(query);
 			st.setInt(1, id);
 			int rowsAffected = st.executeUpdate();

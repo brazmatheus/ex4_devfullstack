@@ -162,8 +162,8 @@ public class TesteApp {
 			System.out.println(aluno);
 		}
 		
-		Aluno aluno1 = new Aluno(1, new Date(2021, 10, 12), true, pessoaCtrl.buscaPorId(3), cursoCtrl.buscaPorId(2));
-		Aluno aluno2 = new Aluno(2, new Date(2021, 3, 23), true, pessoaCtrl.buscaPorId(4), cursoCtrl.buscaPorId(2));
+		Aluno aluno1 = new Aluno(null, new Date(2021, 10, 12), true, pessoaCtrl.buscaPorId(2), cursoCtrl.buscaPorId(2));
+		Aluno aluno2 = new Aluno(null, new Date(2021, 3, 23), true, pessoaCtrl.buscaPorId(4), cursoCtrl.buscaPorId(2));
 		
 		System.out.println("--------------------------------------------------");
 		
@@ -202,8 +202,8 @@ public class TesteApp {
 		}
 		System.out.println("--------------------------------------------------");
 
-		Professor prof1 = new Professor(null, pessoaCtrl.buscaPorId(1), Escolaridade.get(4));
-		Professor prof2 = new Professor(null, pessoaCtrl.buscaPorId(2), Escolaridade.get(2));
+		Professor prof1 = new Professor(1, pessoaCtrl.buscaPorId(1), Escolaridade.get(4));
+		Professor prof2 = new Professor(2, pessoaCtrl.buscaPorId(2), Escolaridade.get(2));
 
 		ctrl.inserir(prof1);
 		ctrl.inserir(prof2);
@@ -249,7 +249,7 @@ public class TesteApp {
 		} catch (ParseException e) {
 			e.printStackTrace();
 		}
-		Oferta ofe1 = new Oferta(null, professorCtrl.buscaPorId(2), disciplinaCtrl.buscaPorId(2), dt1, dt2, Dia.get(2),
+		Oferta ofe1 = new Oferta(1, professorCtrl.buscaPorId(2), disciplinaCtrl.buscaPorId(2), dt1, dt2, Dia.get(2),
 				"08:00");
 		ctrl.inserir(ofe1);
 
@@ -260,7 +260,7 @@ public class TesteApp {
 			e.printStackTrace();
 		}
 
-		Oferta ofe2 = new Oferta(null, professorCtrl.buscaPorId(4), disciplinaCtrl.buscaPorId(6), dt1, dt2, Dia.get(6),
+		Oferta ofe2 = new Oferta(2, professorCtrl.buscaPorId(2), disciplinaCtrl.buscaPorId(6), dt1, dt2, Dia.get(6),
 				"19:00");
 		ctrl.inserir(ofe2);
 

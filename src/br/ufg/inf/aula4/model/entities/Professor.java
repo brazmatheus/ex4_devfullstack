@@ -48,7 +48,7 @@ public class Professor {
 	@Override
 	public String toString() {
 		return "Professor [idProfessor=" + idProfessor + ", pessoa=" + pessoa + ", escolaridade="
-				+ escolaridade.getValue() + "]";
+				+  "]";
 	}
 
 }

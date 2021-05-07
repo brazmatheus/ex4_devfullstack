@@ -33,9 +33,7 @@ public class OfertaNegocio {
 		}
 		
 		public Oferta buscaPorId(Integer id) throws OfertaExection, ProfessorExection, DisciplinaExection {
-			Oferta oferta = new Oferta();
-			oferta.setProfessor(professorNegocio.buscaPorId(oferta.getProfessor().getIdProfessor()));
-			oferta.setDisciplina(disciplinaNegocio.buscaPorId(oferta.getDisciplina().getIdDisciplina()));
+			Oferta oferta = dao.buscaPorId(id);
 			return oferta;
 		}
 		

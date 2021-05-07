@@ -64,8 +64,8 @@ public class MatriculaDAO {
 
 	private Matricula vo(ResultSet rs) throws SQLException {
 		Matricula matricula = new Matricula();
-		matricula.getAluno().setIdAluno((rs.getInt("id_aluno")));
-		matricula.getOferta().setIdOferta((rs.getInt("id_oferta")));
+		matricula.setAluno(new Aluno(rs.getInt("id_aluno"), null, null, null, null));
+		matricula.setOferta(new Oferta(rs.getInt("id_oferta"), null, null, null, null, null, null));
 		matricula.setIdMatricula((rs.getInt("id_aluno")));
 		return matricula;
 	}
